@@ -14,3 +14,12 @@ model Todo {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+// model Employee {
+//   id        String   @id @default("uuid()") @db.VarChar
+//   name      String   @db.VarChar
+//   lastName      String   @db.VarChar
+//   isAdmin   Boolean  @default(true)
+//   createdAt DateTime @default(now()) @db.Timestamp(6)
+//   roles String[] @default([])
+// }
