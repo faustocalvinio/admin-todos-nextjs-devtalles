@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma";
 import { NewTodo, TodosGrid } from "@/todos";
 
 export const metadata = {
-   title: "Rest Todos",
+   title: "Server Actions Todos test",
 };
 
 export default async function RestTodosPage() {
@@ -14,11 +14,14 @@ export default async function RestTodosPage() {
    });
 
    return (
-      <div>
-         <div className="w-full px-3 mx-5 mb-5">
-            <NewTodo />
+      <>
+         <span className="text-3xl mb-10 text-black">Server Actions Todos</span>
+         <div>
+            <div className="w-full px-3 mx-5 mt-5 mb-5">
+               <NewTodo />
+            </div>
+            <TodosGrid todos={todos} />
          </div>
-         <TodosGrid todos={todos} />
-      </div>
+      </>
    );
 }

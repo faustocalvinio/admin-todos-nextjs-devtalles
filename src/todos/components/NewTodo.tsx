@@ -1,36 +1,39 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+// import { useRouter } from 'next/navigation';
+
 import { IoTrashOutline } from "react-icons/io5";
-import { createTodo, deleteCompletedTodos } from "../helpers/todos";
-import { useRouter } from "next/navigation";
+import { addTodo, deleteCompleted } from "../actions/todo-actions";
+
+// import * as todosApi from '@/todos/helpers/todos';
 
 export const NewTodo = () => {
+   // const router = useRouter();
    const [description, setDescription] = useState("");
-   const router = useRouter();
-   async function onSubmit(e: FormEvent) {
+
+   const onSubmit = async (e: FormEvent) => {
       e.preventDefault();
-      if (description === "") return;
+      if (description.trim().length === 0) return;
 
-      const todo = await createTodo(description);
-      router.refresh();
+      await addTodo(description);
       setDescription("");
-      return todo;
-   }
+      // router.refresh();
+   };
 
-   async function deleteCompleted() {
-      const response = await deleteCompletedTodos();
-      router.refresh();
-   }
+   // const deleteCompleted = async() => {
+   // await todosApi.deleteCompletedTodos();
+   // router.refresh();
+   // }
 
    return (
-      <form className="flex w-full" onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="flex w-full">
          <input
             type="text"
-            className="w-6/12 -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-sky-500 transition-all"
-            placeholder="¿Qué necesita ser hecho?"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
+            className="w-6/12 -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-sky-500 transition-all"
+            placeholder="¿Qué necesita ser hecho?"
          />
 
          <button
@@ -48,7 +51,7 @@ export const NewTodo = () => {
             className="flex items-center justify-center rounded ml-2 bg-red-400 p-2 text-white hover:bg-red-700 transition-all"
          >
             <IoTrashOutline />
-            Delete
+            <span className="ml-2">Borrar completados</span>
          </button>
       </form>
    );
