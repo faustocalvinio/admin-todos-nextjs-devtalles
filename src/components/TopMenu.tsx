@@ -2,7 +2,7 @@ import { CiBellOn, CiChat1, CiMenuBurger, CiSearch } from "react-icons/ci";
 
 export const TopMenu = () => {
    return (
-      <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
+      <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5 text-black">
          <div className="px-6 flex items-center justify-between space-x-4">
             <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
                Dashboard
