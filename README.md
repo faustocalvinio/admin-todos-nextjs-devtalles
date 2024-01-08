@@ -1,21 +1,40 @@
 # Development
+Pasos para levantar la app en desarrollo
 
-## Pasos para levantar la app en desaarrollo
 
-1. Levantar la base de daatoss
+1. Levantar la base de datos
 ```
 docker compose up -d
 ```
-2. env template a env y reeemplazar por reales
-## Prisma 
 
-1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started   
-2. Set the provider of the datasource block in schema.prisma to match your database: postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb.        
-3. Run npx prisma db pull to turn your database schema into a Prisma schema.
-4. Run npx prisma generate to generate the Prisma Client. You can then start querying your database.
+2. Crear una copia de el .env.template y renombrarlo a .env
+3. Reemplazar las variables de entorno
+4. Ejecutar el comando ```npm install``` para reconstruir los módulos de node
+5. Ejecutar el comando ```npm run dev``` para ejecutar aplicación en desarrollo
+6. Ejecutar estos comandos de Prisma
+```
+npx prisma migrate dev
+npx prisma generate
+```
+7. Ejecutar el SEED para [crear la base de datos local](localhost:3000/api/seed)
 
+
+## Nota: Usuario por defecto
+__usuario:__  test1@google.com
+__password:__ 123456
+
+
+# Prisma commnads
 ```
 npx prisma init
 npx prisma migrate dev
 npx prisma generate
+
 ```
+
+
+
+# Prod
+
+
+# Stage

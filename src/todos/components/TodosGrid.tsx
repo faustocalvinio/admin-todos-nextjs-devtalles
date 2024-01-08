@@ -1,32 +1,34 @@
 "use client";
 
 import { Todo } from "@prisma/client";
-import { TodoItem } from "..";
+import { TodoItem } from "./TodoItem";
 
-// import * as todosApi from "@/todos/helpers/todos";
+// import * as todosApi from '@/todos/helpers/todos';
+import { toggleTodo } from "@/todos/actions/todo-actions";
 import { useRouter } from "next/navigation";
-import { toggleTodo } from "../actions/todo-actions";
+import { TodoItemExperimental } from "./TodoItemExperiemental";
 
 interface Props {
    todos?: Todo[];
 }
 
 export const TodosGrid = ({ todos = [] }: Props) => {
-   const router = useRouter();
-
-   // async function toggleTodo(id: string, complete: boolean) {
-   //    const updatedTodo = await todosApi.updateTodo(id, complete);
-   //    router.refresh();
-   //    return updatedTodo;
+   // const toggleTodo = async(id: string, complete: boolean) => {
+   //   const updatedTodo = await todosApi.updateTodo( id, complete );
+   //   console.log({updatedTodo});
+   //   router.refresh();
    // }
 
    return (
-      <>
-         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            {todos.map((todo) => (
-               <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} />
-            ))}
-         </div>
-      </>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+         {todos.map((todo) => (
+            // <TodoItem key={ todo.id } todo={ todo } toggleTodo={ toggleTodo }  />
+            <TodoItemExperimental
+               key={todo.id}
+               todo={todo}
+               toggleTodo={toggleTodo}
+            />
+         ))}
+      </div>
    );
 };

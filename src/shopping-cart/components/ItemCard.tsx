@@ -1,13 +1,10 @@
 "use client";
 
-import type { Product } from "../../products/data/products";
 import Image from "next/image";
+import type { Product } from "@/products/data/products";
 
 import { IoAddCircleOutline, IoRemove } from "react-icons/io5";
-import {
-   addSingleProductFromCart,
-   removeSingleProductFromCart,
-} from "../actions/actions";
+import { addProductToCart, removeSingleItemFromCart } from "../actions/actions";
 
 import { useRouter } from "next/navigation";
 
@@ -20,17 +17,17 @@ export const ItemCard = ({ product, quantity }: Props) => {
    const router = useRouter();
 
    function onAddToCart() {
-      addSingleProductFromCart(product.id);
+      TODO: addProductToCart(product.id);
       router.refresh();
    }
 
    function onRemoveItem() {
-      removeSingleProductFromCart(product.id);
+      TODO: removeSingleItemFromCart(product.id);
       router.refresh();
    }
 
    return (
-      <div className="flex items-center shadow rounded-lg w-full bg-gray-800 border-gray-100 text-black">
+      <div className="flex items-center shadow rounded-lg w-full bg-gray-800 border-gray-100">
          {/* Product Image */}
          <div className="p-2">
             <Image
@@ -45,7 +42,7 @@ export const ItemCard = ({ product, quantity }: Props) => {
          {/* Title */}
          <div className="px-5 pb-5 w-full flex flex-col mt-2">
             <a href="#">
-               <h3 className="font-semibold text-xl tracking-tight">
+               <h3 className="font-semibold text-xl tracking-tight text-white">
                   {product.name} -{" "}
                   <small className="text-sm">${product.price.toFixed(2)}</small>
                </h3>
@@ -53,8 +50,10 @@ export const ItemCard = ({ product, quantity }: Props) => {
 
             {/* Price and Add to Cart */}
             <div className="flex flex-col items-start justify-between">
-               <span className="text-gray-900">Cantidad: {quantity}</span>
-               <span className="font-bold ">
+               <span className="text-gray-900 dark:text-white">
+                  Cantidad: {quantity}
+               </span>
+               <span className="font-bold text-white">
                   Total: ${(product.price * quantity).toFixed(2)}
                </span>
             </div>
@@ -67,7 +66,7 @@ export const ItemCard = ({ product, quantity }: Props) => {
             >
                <IoAddCircleOutline size={25} />
             </button>
-            <span className="text-2xl px-4 mx-10">{quantity}</span>
+            <span className="text-2xl text-white mx-10">{quantity}</span>
             <button
                onClick={onRemoveItem}
                className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
